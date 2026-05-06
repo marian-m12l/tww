@@ -3225,6 +3225,14 @@ inline u16 dComIfGp_event_checkHind(u16 i_hindFlag) {
     return g_dComIfG_gameInfo.play.getEvent()->checkHind(i_hindFlag);
 }
 
+inline void dComIfGp_event_onHindFlag(u16 flag) {
+    g_dComIfG_gameInfo.play.getEvent()->onHindFlag(flag);
+}
+
+inline void dComIfGp_event_offHindFlag(u16 flag) {
+    g_dComIfG_gameInfo.play.getEvent()->offHindFlag(flag);
+}
+
 /**
  * Returns the button (X Y or Z) that was used to start this event.
  * @return The dTalkXYButton_e of the button the player used to initiate this event.
@@ -3387,6 +3395,10 @@ inline int dComIfGp_evmng_getMyActIdx(int staffIdx, char** pActions, int actionC
 
 inline char* dComIfGp_evmng_getMyActName(int staffIdx) {
     return dComIfGp_getPEvtManager()->getMyActName(staffIdx);
+}
+
+inline s32 dComIfGp_evmng_getMySubstanceNum(int staffIdx, char* name) {
+    return dComIfGp_getPEvtManager()->getMySubstanceNum(staffIdx, name);
 }
 
 inline f32* dComIfGp_evmng_getMyFloatP(int staffIdx, char* name) {
