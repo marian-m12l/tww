@@ -4369,14 +4369,10 @@ static cPhs_State daBPW_Create(fopAc_ac_c* a_this) {
     bpw_class* i_this = (bpw_class*)a_this;
     fopAc_ac_c* actor = a_this;
     csXyz sp18 = actor->shape_angle;
-#if VERSION > VERSION_DEMO
-    fopAcM_SetupActor(actor, bpw_class);
-#endif
+    fopAcM_ct_Retail(actor, bpw_class);
     res = dComIfG_resLoad(&i_this->m2AC, "BPW");
     if (res == cPhs_COMPLEATE_e) {
-#if VERSION == VERSION_DEMO
-        fopAcM_SetupActor(actor, bpw_class);
-#endif
+        fopAcM_ct_Demo(actor, bpw_class);
         i_this->mType = (bpw_class::Actor_Type_e)fopAcM_GetParam(actor);
         i_this->mUnknownParam2 = (bpw_class::Damage_Action_e)((uint)fopAcM_GetParam(actor) >> 8);
         i_this->mLightState = (u8)((uint)fopAcM_GetParam(actor) >> 0x10);

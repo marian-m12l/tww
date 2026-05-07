@@ -109,15 +109,11 @@ bool Act_c::create_heap() {
 
 /* 0000045C-00000704       .text _create__Q212daObjSwlight5Act_cFv */
 cPhs_State Act_c::_create() {
-#if VERSION > VERSION_DEMO
-    fopAcM_SetupActor(this, Act_c);
-#endif
+    fopAcM_ct_Retail(this, Act_c);
 
     mF24 = prm_get_type();
 
-#if VERSION == VERSION_DEMO
-    fopAcM_SetupActor(this, Act_c);
-#endif
+    fopAcM_ct_Demo(this, Act_c);
 
     cPhs_State PVar2 = dComIfG_resLoad(&mPhase, M_arcname);
     if (PVar2 == cPhs_COMPLEATE_e) {

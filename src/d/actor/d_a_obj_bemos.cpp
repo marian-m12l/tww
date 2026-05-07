@@ -474,19 +474,12 @@ cPhs_State daBemos_c::CreateInit() {
 
 /* 00003F90-0000403C       .text _create__9daBemos_cFv */
 cPhs_State daBemos_c::_create() {
-#if VERSION == VERSION_DEMO
+    fopAcM_ct_Retail(this, daBemos_c);
     cPhs_State ret = dComIfG_resLoad(&mPhase, m_arcname);
     m6B8 = fopAcM_GetParam(this) >> 0x1C;
-#else
-    fopAcM_SetupActor(this, daBemos_c);
-    cPhs_State ret = dComIfG_resLoad(&mPhase, m_arcname);
-    m6B8 = fopAcM_GetParam(this) >> 0x1C;
-#endif
 
     if (ret == cPhs_COMPLEATE_e) {
-#if VERSION == VERSION_DEMO
-        fopAcM_SetupActor(this, daBemos_c);
-#endif
+        fopAcM_ct_Demo(this, daBemos_c);
 
         static s32 SHeapSize[] = {0x1740, 0x1E00, 0xBA0};
         if (fopAcM_entrySolidHeap(this, CheckCreateHeap, SHeapSize[m6B8])) {

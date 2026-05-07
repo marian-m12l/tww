@@ -2081,14 +2081,10 @@ static BOOL CheckCreateHeap(fopAc_ac_c* i_this) {
 /* 000051A8-000052C4       .text _create__10daNpc_Hr_cFv */
 cPhs_State daNpc_Hr_c::_create() {
 
-#if VERSION > VERSION_DEMO
-    fopAcM_SetupActor(this, daNpc_Hr_c);
-#endif
+    fopAcM_ct_Retail(this, daNpc_Hr_c);
     cPhs_State state = dComIfG_resLoad(&mPhs, "Hr");
     if (state == cPhs_COMPLEATE_e) {
-#if VERSION == VERSION_DEMO
-    fopAcM_SetupActor(this, daNpc_Hr_c);
-#endif
+    fopAcM_ct_Demo(this, daNpc_Hr_c);
         switch(fopAcM_GetName(this)) {
             case PROC_NPC_HR:
                 switch (getShapeType()) {
