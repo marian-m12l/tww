@@ -384,7 +384,7 @@ config.libs = [
         "host": True,
         "objects": [
             Object(Matching,    "m_Do/m_Do_main.cpp"),
-            Object(MatchingFor("GZLJ01", "GZLE01", "GZLP01"),    "m_Do/m_Do_printf.cpp"),
+            Object(Matching,    "m_Do/m_Do_printf.cpp"),
             Object(MatchingFor("GZLJ01", "GZLE01", "GZLP01"),    "m_Do/m_Do_audio.cpp"),
             Object(MatchingFor("GZLJ01", "GZLE01", "GZLP01"),    "m_Do/m_Do_controller_pad.cpp"),
             Object(NonMatching, "m_Do/m_Do_graphic.cpp"),
