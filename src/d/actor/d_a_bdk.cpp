@@ -485,7 +485,7 @@ static BOOL daBdk_Draw(bdk_class* i_this) {
     #endif
 
     if (!dComIfGs_isStageBossEnemy()) {
-        fopAc_ac_c* player = dComIfGp_getPlayer(1);
+        fopAc_ac_c* player = dComIfGp_getLinkPlayer();
         actor->tevStr = player->tevStr;
         g_env_light.setLightTevColorType(model, &actor->tevStr);
         i_this->mpMorf->entryDL();

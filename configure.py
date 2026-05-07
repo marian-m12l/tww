@@ -463,7 +463,7 @@ config.libs = [
             Object(Matching,    "f_pc/f_pc_layer_tag.cpp"),
             Object(Matching,    "f_pc/f_pc_line.cpp"),
             Object(Matching,    "f_pc/f_pc_load.cpp"),
-            Object(MatchingFor("GZLJ01", "GZLE01", "GZLP01"),    "f_pc/f_pc_manager.cpp"),
+            Object(Matching,    "f_pc/f_pc_manager.cpp"),
             Object(Matching,    "f_pc/f_pc_method.cpp"),
             Object(Matching,    "f_pc/f_pc_node.cpp"),
             Object(MatchingFor("GZLJ01", "GZLE01", "GZLP01"),    "f_pc/f_pc_node_req.cpp"),
