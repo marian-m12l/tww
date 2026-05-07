@@ -21,4 +21,3 @@ IncludeCategories:
     Priority: -1000
 IndentCaseBlocks: true
 IndentCaseLabels: true
-NamespaceIndentation: All
