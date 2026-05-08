@@ -775,7 +775,7 @@ static dCcD_SrcCps l_at_cps_src = {
         /* SrcObjTg  Type    */ 0,
         /* SrcObjTg  SPrm    */ 0,
         /* SrcObjCo  SPrm    */ 0,
-        /* SrcGObjAt Se      */ dCcG_SE_UNK4,
+        /* SrcGObjAt Se      */ dCcG_SE_WOOD,
         /* SrcGObjAt HitMark */ dCcG_AtHitMark_Unk1_e,
         /* SrcGObjAt Spl     */ dCcG_At_Spl_UNK0,
         /* SrcGObjAt Mtrl    */ 0,

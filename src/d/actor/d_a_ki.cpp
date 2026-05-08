@@ -1140,7 +1140,7 @@ static BOOL daKi_Execute(ki_class* i_this) {
                 i_this->m31C = 150.0f;
             } else
 #endif
-            if (i_this->mStts.GetAtSpl() == 1) {
+            if (i_this->mStts.GetAtSpl() == dCcG_At_Spl_UNK1) {
                 i_this->m31C = l_kiHIO.m38;
             } else {
                 i_this->m31C = l_kiHIO.m34;

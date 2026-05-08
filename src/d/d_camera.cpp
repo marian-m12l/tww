@@ -1229,11 +1229,14 @@ int dCamera_c::nextMode(s32 i_curMode) {
 
     if (next_mode == 12 && types[mCurType].mStyles[next_mode] < 0) {
         next_mode = i_curMode;
+        if (
+            mCurType != mCamTypeEvent && mCurType != mCamTypeBoat &&
 #if VERSION == VERSION_DEMO
-        if (mCurType != mCamTypeEvent && mCurType != mCamTypeBoat && mCurType != GetCameraTypeFromCameraName("BoatBattle"))
+            mCurType != GetCameraTypeFromCameraName("BoatBattle")
 #else
-        if (mCurType != mCamTypeEvent && mCurType != mCamTypeBoat && mCurType != mCamTypeBoatBattle && mCurType != mCamTypeRestrict)
+            mCurType != mCamTypeBoatBattle && mCurType != mCamTypeRestrict
 #endif
+        )
         {
             m254 |= 1;
         }

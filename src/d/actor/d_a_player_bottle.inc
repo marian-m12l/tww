@@ -369,7 +369,7 @@ BOOL daPy_lk_c::procBottleOpen() {
                 dCcG_At_Spl spl;
                 if (mEquipItem == dItem_WATER_BOTTLE_e) {
                     spl = dCcG_At_Spl_UNK0;
-                } else {
+                } else { // dItem_FOREST_WATER_e
                     spl = dCcG_At_Spl_UNK4;
                     onNoResetFlg1(daPyFlg1_FOREST_WATER_USE);
                     m3554 = 3;

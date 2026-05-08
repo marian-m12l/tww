@@ -518,9 +518,8 @@ public:
 
 class mapCtrlDisp_c {
 public:
-    // TODO: these two functions are supposed to be weak
-    void initMapCtrlDisp();
-    void moveMapCtrlDisp();
+    inline void initMapCtrlDisp();
+    inline void moveMapCtrlDisp();
 
     void Create() {}
     void Delete() {}

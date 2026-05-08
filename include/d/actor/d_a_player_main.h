@@ -1211,7 +1211,9 @@ public:
     void autoGroundHit();
     BOOL checkAttentionPosAngle(fopAc_ac_c*, cXyz**);
     void setNeckAngle();
+#if VERSION > VERSION_DEMO
     void checkOriginalHatAnimation();
+#endif
     void setHatAngle();
     void setMoveSlantAngle();
     void setWaistAngle();
@@ -2314,8 +2316,8 @@ public:
     /* 0x4284 */ dCcD_Cyl mAtCyl;
     /* 0x43B4 */ dCcD_Cyl mLightCyl;
     /* 0x44E4 */ dCcD_Cps mAtCps[3];
-    /* 0x488C */ dCcD_Cps mFanWindCps;
-    /* 0x49C4 */ dCcD_Sph mFanWindSph;
+    /* 0x488C */ dCcD_Cps mFanWindCps; // Used when swinging the Deku Leaf
+    /* 0x49C4 */ dCcD_Sph mFanWindSph; // Used when swinging the Deku Leaf and when creating a burst of air while gliding with it
     /* 0x4AF0 */ dCcD_Cps mFanLightCps;
     
     struct ProcInitTableEntry {

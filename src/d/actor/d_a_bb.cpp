@@ -2577,7 +2577,7 @@ static cPhs_State daBb_Create(fopAc_ac_c* a_this) {
             /* SrcObjTg  Type    */ 0,
             /* SrcObjTg  SPrm    */ 0,
             /* SrcObjCo  SPrm    */ 0,
-            /* SrcGObjAt Se      */ dCcG_SE_UNK5,
+            /* SrcGObjAt Se      */ dCcG_SE_METAL,
             /* SrcGObjAt HitMark */ dCcG_AtHitMark_None_e,
             /* SrcGObjAt Spl     */ dCcG_At_Spl_UNK0,
             /* SrcGObjAt Mtrl    */ 0,
@@ -2611,18 +2611,10 @@ static cPhs_State daBb_Create(fopAc_ac_c* a_this) {
             /* SrcGObjAt Mtrl    */ 0,
             /* SrcGObjAt SPrm    */ 0,
             /* SrcGObjTg Se      */ 0,
-#if VERSION == DEMO
-            /* SrcGObjTg HitMark */ dCcG_SE_UNK1,
-#else
-            /* SrcGObjTg HitMark */ 0,
-#endif
+            /* SrcGObjTg HitMark */ DEMO_SELECT(dCcG_TgHitMark_Unk1_e, dCcG_AtHitMark_None_e),
             /* SrcGObjTg Spl     */ dCcG_Tg_Spl_UNK0,
             /* SrcGObjTg Mtrl    */ 0,
-#if VERSION == DEMO
-            /* SrcGObjTg SPrm    */ dCcG_TgSPrm_NoConHit_e,
-#else
-            /* SrcGObjTg SPrm    */ dCcG_TgSPrm_NoConHit_e | dCcG_TgSPrm_NoHitMark_e,
-#endif
+            /* SrcGObjTg SPrm    */ DEMO_SELECT(dCcG_TgSPrm_NoConHit_e, dCcG_TgSPrm_NoConHit_e | dCcG_TgSPrm_NoHitMark_e),
             /* SrcGObjCo SPrm    */ 0,
         },
         // cM3dGSphS
@@ -2647,18 +2639,10 @@ static cPhs_State daBb_Create(fopAc_ac_c* a_this) {
             /* SrcGObjAt Mtrl    */ 0,
             /* SrcGObjAt SPrm    */ 0,
             /* SrcGObjTg Se      */ 0,
-#if VERSION == DEMO
-            /* SrcGObjTg HitMark */ dCcG_SE_UNK1,
-#else
-            /* SrcGObjTg HitMark */ 0,
-#endif
+            /* SrcGObjTg HitMark */ DEMO_SELECT(dCcG_TgHitMark_Unk1_e, dCcG_TgHitMark_None_e),
             /* SrcGObjTg Spl     */ dCcG_Tg_Spl_UNK0,
             /* SrcGObjTg Mtrl    */ 0,
-#if VERSION == DEMO
-            /* SrcGObjTg SPrm    */ dCcG_TgSPrm_NoConHit_e,
-#else
-            /* SrcGObjTg SPrm    */ dCcG_TgSPrm_NoConHit_e | dCcG_TgSPrm_NoHitMark_e,
-#endif
+            /* SrcGObjTg SPrm    */ DEMO_SELECT(dCcG_TgSPrm_NoConHit_e, dCcG_TgSPrm_NoConHit_e | dCcG_TgSPrm_NoHitMark_e),
             /* SrcGObjCo SPrm    */ 0,
         },
         // cM3dGSphS

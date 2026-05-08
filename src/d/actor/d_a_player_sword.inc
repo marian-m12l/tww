@@ -376,7 +376,7 @@ void daPy_lk_c::setJumpCutAtParam() {
         }
         setAtParam(AT_TYPE_SWORD, atp, dCcG_At_Spl_UNK1, dCcG_SE_UNK1, dCcG_AtHitMark_Big_e, CUT_TYPE_JUMPCUT_SWORD, radius);
     } else if (mEquipItem == dItem_SKULL_HAMMER_e) {
-        setAtParam(AT_TYPE_SKULL_HAMMER, 4, dCcG_At_Spl_UNK1, dCcG_SE_UNK5, dCcG_AtHitMark_Nrm_e, CUT_TYPE_JUMPCUT_HAMMER, 50.0f);
+        setAtParam(AT_TYPE_SKULL_HAMMER, 4, dCcG_At_Spl_UNK1, dCcG_SE_METAL, dCcG_AtHitMark_Nrm_e, CUT_TYPE_JUMPCUT_HAMMER, 50.0f);
     } else if (mActorKeepEquip.getActor()) {
         setEnemyWeaponAtParam(TRUE);
     } else {
@@ -1385,7 +1385,7 @@ BOOL daPy_lk_c::procCutTurn_init(int param_0) {
     voiceStart(1);
     dComIfGp_setPlayerStatus0(0, daPyStts0_SWORD_SWING_e);
     mCutType = CUT_TYPE_CUT_TURN;
-    offResetFlg0(daPyRFlg0_UNK8000000);
+    offResetFlg0(daPyRFlg0_NOT_ATTACKING);
     mAtCyl.SetR(m35A4 * 0.5f);
     if (!checkNoResetFlg0(daPyFlg0_UNK80000000)) {
         m32E4.makeEmitter(dPa_name::ID_AK_JN_ROUNDATTACKTOE, mpCLModel->getAnmMtx(0x28), &current.pos, NULL);
@@ -1506,7 +1506,7 @@ BOOL daPy_lk_c::procCutRoll_init() {
     dComIfGp_setItemMagicCount(-2);
     mCutType = CUT_TYPE_CUT_ROLL;
     mCutCount = 0;
-    offResetFlg0(daPyRFlg0_UNK8000000);
+    offResetFlg0(daPyRFlg0_NOT_ATTACKING);
     if (checkNormalSwordEquip()) {
         m35A4 = m_HIO->mCut.mCutRoll.m.field_0x20;
         if (checkNoResetFlg1(daPyFlg1_SOUP_POWER_UP)) {
