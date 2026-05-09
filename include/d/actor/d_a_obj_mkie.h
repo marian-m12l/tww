@@ -83,7 +83,7 @@ public:
     /* 0xF59 */ bool mStatueDelete;
     /* 0xF5A */ bool mEvtPlaying;
     /* 0xF5B */ bool mBaseAnmPlaying;
-    /* 0xF5C */ s16 mState;
+    /* 0xF5C */ s16 mTimer;
     /* 0xF5E */ s16 mLightCnt;
     /* 0xF60 */ s16 mEvtIdx;
     /* 0xF62 */ bool mSwitch;

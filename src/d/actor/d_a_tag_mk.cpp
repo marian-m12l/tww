@@ -50,8 +50,9 @@ BOOL daTag_Mk_c::checkArea(float arg1, float arg2, float arg3) {
         return FALSE;
     }
 
-    s16 tmp = current.angle.y;
-    if (abs(tmp -= player->current.angle.y) < 0x5000) {
+    s16 tmp = (s16)current.angle.y;
+    tmp -= player->current.angle.y;
+    if (abs((s16)tmp) < 0x5000) {
         return FALSE;
     }
     return TRUE;
@@ -214,7 +215,7 @@ s32 daTag_Mk_c::getNowEventAction() {
     return dComIfGp_evmng_getMyActIdx(mStaffIdx, action_table, ARRAY_SIZE(action_table), FALSE, 1);
 }
 
-/* 00000744-0000083C       .text demoACT__10daTag_Mk_cFv */
+/* 00000744-0000083C       .text demoProc__10daTag_Mk_cFv */
 void daTag_Mk_c::demoProc() {
     s32 iVar1 = getNowEventAction();
 
@@ -514,9 +515,9 @@ cPhs_State daTag_Mk_c::create() {
                 m296 = 0x14;
             } else if (dComIfGs_isSwitch(getSwbit(), fopAcM_GetRoomNo(this))) {
                 m296 = 10;
-                mCutEndTimer = 0x3c;
+                mCutEndTimer = 60;
             } else {
-                mCutEndTimer = 0xb4;
+                mCutEndTimer = 180;
                 m296 = 0;
             }
             break;

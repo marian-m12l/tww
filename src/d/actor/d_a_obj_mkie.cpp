@@ -345,7 +345,7 @@ void daObjMkie::Act_c::mode_demoWait() {
 /* 00001168-000011FC       .text mode_demo_init__Q29daObjMkie5Act_cFv */
 void daObjMkie::Act_c::mode_demo_init() {
     mModeProc = 2;
-    mState = 10;
+    mTimer = 10;
     if (!prm_get_correct()) {
         mDoAud_seStart(JA_SE_READ_RIDDLE_1);
     }
@@ -355,13 +355,16 @@ void daObjMkie::Act_c::mode_demo_init() {
 
 /* 000011FC-00001338       .text mode_demo__Q29daObjMkie5Act_cFv */
 void daObjMkie::Act_c::mode_demo() {
-    if (mState > 0 && (mState -= 1, mState == 0)) {
-        eff_break();
-        sound_melt();
-        fopAcM_onSwitch(this, prm_get_swSave());
+    if (mTimer > 0) {
+        mTimer--;
+        if (mTimer == 0) {
+            eff_break();
+            sound_melt();
+            fopAcM_onSwitch(this, prm_get_swSave());
+        }
     }
 
-    if (mState == 0) {
+    if (mTimer == 0) {
         mBaseAnmPlaying = mBrkVan.play();
         if (!mBroken && mBaseAnmPlaying) {
             sound_break();
@@ -375,7 +378,7 @@ void daObjMkie::Act_c::mode_demo() {
         mEvtPlaying = false;
     }
 
-    if (!mEvtPlaying && mState == 0 && mBaseAnmPlaying) {
+    if (!mEvtPlaying && mTimer == 0 && mBaseAnmPlaying) {
         mStatueDelete = true;
     }
 }
@@ -414,7 +417,7 @@ BOOL daObjMkie::Act_c::Draw() {
     if (!mBaseAnmPlaying) {
         bool flagVan = false;
         if (mModeProc == 2) {
-            if (mState == 0) {
+            if (mTimer == 0) {
                 flagVan = true;
             }
         }
