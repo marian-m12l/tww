@@ -284,20 +284,21 @@ static BOOL nodeCallBack(J3DNode* node, int calcTiming) {
 
 /* 00000B4C-00001008       .text tail_control__FP9bdk_classP10bdk_tail_s */
 void tail_control(bdk_class* i_this, bdk_tail_s* tail) {
-    cXyz vec1, vec2, vec3;
-    f32 fVar1, fVar2;
+    cXyz sp10;
+    cXyz sp28;
+    cXyz sp1C;
 
-    vec1 = tail->m0150[1] - tail->m0150[0];
-    tail->m0168.y = cM_atan2s(vec1.x, vec1.z);
-    tail->m0168.x = -cM_atan2s(vec1.y, std::sqrtf(vec1.x * vec1.x + vec1.z * vec1.z));
+    sp10 = tail->m0150[1] - tail->m0150[0];
+    tail->m0168.y = cM_atan2s(sp10.x, sp10.z);
+    tail->m0168.x = -cM_atan2s(sp10.y, std::sqrtf(sp10.x * sp10.x + sp10.z * sp10.z));
 
-    vec1.x = 0.0f;
-    vec1.y = 0.0f;
-    vec1.z = 30.0f;
+    sp10.x = 0.0f;
+    sp10.y = 0.0f;
+    sp10.z = 30.0f;
 
     cMtx_YrotS(*calc_mtx, tail->m0168.y);
     cMtx_XrotM(*calc_mtx, tail->m0168.x);
-    MtxPosition(&vec1, &tail->m0170);
+    MtxPosition(&sp10, &tail->m0170);
 
     tail->m024[0] = tail->m0150[1];
 
@@ -307,47 +308,47 @@ void tail_control(bdk_class* i_this, bdk_tail_s* tail) {
     csXyz* array_9c = &tail->m09C[1];
     cXyz* array_d8 = &tail->m0D8[1];
 
-    fVar2 = i_this->mAcch.GetGroundH() + 5.0f;
+    f32 div = 0.77000004f;
+    f32 fVar2 = i_this->mAcch.GetGroundH() + 5.0f;
     if (i_this->mAction == ACTION_START) {
         fVar2 = -30000.0f;
     }
 
     for(i = 1; i < (s32)ARRAY_SIZE(tail->m024); i++, array_24++, array_9c++, array_d8++) {
-        fVar1 = 1.0f - (i - 1) * 0.1f;
-        vec3.x =  array_d8->x + tail->m0170.x * fVar1;
-        vec3.y  = array_d8->y + tail->m0170.y * fVar1;
-        vec3.z  = array_d8->z + tail->m0170.z * fVar1;
+        f32 fVar1 = 1.0f - (i - 1) * 0.1f;
+        sp1C.x =  array_d8->x + tail->m0170.x * fVar1;
+        sp1C.y  = array_d8->y + tail->m0170.y * fVar1;
+        sp1C.z  = array_d8->z + tail->m0170.z * fVar1;
 
-        f32 fVar3 = array_24->y + vec3.y;
+        f32 fVar3 = array_24->y + sp1C.y;
         if (fVar3 < fVar2) {
             fVar3 = fVar2;
         }
         fVar1 = fVar3 - array_24[-1].y;
-        f32 dx = vec3.x + (array_24->x - array_24[-1].x);
-        f32 dz = vec3.z + (array_24->z - array_24[-1].z);
+        f32 dx = sp1C.x + (array_24->x - array_24[-1].x);
+        f32 dz = sp1C.z + (array_24->z - array_24[-1].z);
         sVar2 = (s16)cM_atan2s(dx, dz);
         sVar1 = -cM_atan2s(fVar1, std::sqrtf(dx * dx + dz * dz));
 
         array_9c[-1].y = sVar2;
         array_9c[-1].x = sVar1;
 
-        vec1.x = 0.0f;
-        vec1.y = 0.0f;
-        vec1.z = 2.0f * (20.0f * (0.25f + 0.03f * i)) * l_HIO.m00C * l_HIO.m010;
+        sp10.x = 0.0f;
+        sp10.y = 0.0f;
+        sp10.z = 2.0f * (20.0f * (0.25f + 0.03f * i)) * l_HIO.m00C * l_HIO.m010;
 
         cMtx_YrotS(*calc_mtx, sVar2);
         cMtx_XrotM(*calc_mtx, sVar1);
-        MtxPosition(&vec1, &vec2);
+        MtxPosition(&sp10, &sp28);
 
         array_d8->x = array_24->x;
         array_d8->y = array_24->y;
         array_d8->z = array_24->z;
 
-        array_24->x = array_24[-1].x + vec2.x;
-        array_24->y = array_24[-1].y + vec2.y;
-        array_24->z = array_24[-1].z + vec2.z;
+        array_24->x = array_24[-1].x + sp28.x;
+        array_24->y = array_24[-1].y + sp28.y;
+        array_24->z = array_24[-1].z + sp28.z;
 
-        f32 div = 0.77000004f;
         array_d8->x = (array_24->x - array_d8->x) * div;
         array_d8->y = (array_24->y - array_d8->y) * div;
         array_d8->z = (array_24->z - array_d8->z) * div;
@@ -3532,7 +3533,7 @@ static BOOL daBdk_IsDelete(bdk_class* i_this) {
 /* 0000BD7C-0000BF08       .text daBdk_Delete__FP9bdk_class */
 static BOOL daBdk_Delete(bdk_class* i_this) {
     fopAc_ac_c* actor = &i_this->actor;
-    dComIfG_resDelete(&i_this->mPhase, "Bdk");
+    dComIfG_resDeleteDemo(&i_this->mPhase, "Bdk");
     mDoHIO_deleteChild(l_HIO.mNo);
     if (actor->heap) {
         dComIfG_Bgsp()->Release(i_this->pm_bgw);
