@@ -8,6 +8,11 @@
 class J3DNode;
 
 namespace daObjJump {
+    // FIXME Attributes struct
+    struct Attr_c {
+        /* 0x00 */ u8 m[0x50];
+    };  // Size: 0x50
+
     class Act_c : public dBgS_MoveBgActor {
     public:
         static u32 prm_make_b() {
@@ -48,11 +53,32 @@ namespace daObjJump {
         virtual BOOL Execute(Mtx**);
         virtual BOOL Draw();
     
-    public:
-        /* 0x2C8 */ u8 m2C8[0x336 - 0x2C8];
+        static const char M_arcname[];
+        static const Attr_c M_attr[2];
+    public:    
+        /* 0x2C8 */ request_of_phase_process_class mPhase;
+        /* 0x2D0 */ J3DModel* mModel;
+        /* 0x2D4 */ int field_0x2D4;
+        /* 0x2D8 */ u8 field_0x2D8[0x2E0 - 0x2D8];
+        /* 0x2E0 */ fpc_ProcID field_0x2E0;
+        /* 0x2E4 */ u8 field_0x2E4[0x2EC - 0x2E4];
+        /* 0x2EC */ cBgS_PolyInfo field_0x2EC;
+        /* 0x2FC */ f32 field_0x2FC;
+        /* 0x300 */ f32 field_0x300;
+        /* 0x304 */ f32 field_0x304;
+        /* 0x308 */ u8 field_0x308[0x32C - 0x308];
+        /* 0x32C */ f32 field_0x32C;
+        /* 0x330 */ int field_0x330;
+        /* 0x334 */ s16 field_0x334;
         /* 0x336 */ u8 m336;
-        /* 0x337 */ u8 m337[0x358 - 0x337];
-    };
+        /* 0x337 */ u8 m337[0x338 - 0x337];
+        /* 0x338 */ f32 field_0x338;
+        /* 0x33C */ f32 field_0x33C;
+        /* 0x340 */ f32 field_0x340;
+        /* 0x344 */ u8 field_0x344[0x352 - 0x344];
+        /* 0x352 */ s16 field_0x352;
+        /* 0x354 */ u8 field_0x354[0x358 - 0x354];
+    };  // Size: 0x358
 };
 
 #endif /* D_A_OBJ_JUMP_H */
