@@ -1683,7 +1683,7 @@ BOOL daNpc_Rsh1_c::_draw() {
         mpShopCursor->draw();
     }
 
-    dSnap_RegistFig(DSNAP_TYPE_UNK5F, this, current.pos, current.angle.y, 1.0f, 1.0f, 1.0f);
+    dSnap_RegistFig(DSNAP_TYPE_RSH1, this, current.pos, current.angle.y, 1.0f, 1.0f, 1.0f);
 
     return TRUE;
 }

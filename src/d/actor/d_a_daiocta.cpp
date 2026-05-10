@@ -1544,7 +1544,7 @@ bool daDaiocta_c::_draw() {
 
     mBrkAnm1.remove(morf_model_p->getModelData());
 
-    dSnap_RegistFig(DSNAP_TYPE_UNKC6, this, 1.0f, 1.0f, 1.0f);
+    dSnap_RegistFig(DSNAP_TYPE_DAIOCTA, this, 1.0f, 1.0f, 1.0f);
 
     return true;
 }

@@ -211,7 +211,7 @@ static BOOL daKi_Draw(ki_class* i_this) {
     }
 
     a_this->model = pModel;
-    dSnap_RegistFig(0xae, a_this, 1.0f, 1.0f, 1.0f);
+    dSnap_RegistFig(DSNAP_TYPE_KI, a_this, 1.0f, 1.0f, 1.0f);
     pModel->getModelData()->setTexNoAnimator(i_this->m32C, i_this->m330);
     i_this->m32C->setFrame(i_this->m334);
 

@@ -172,7 +172,7 @@ static BOOL daKamome_Draw(kamome_class* i_this) {
         &i_this->actor.tevStr
     );
 
-    dSnap_RegistFig(0x55, &i_this->actor, 1.0f, 1.0f, 1.0f);
+    dSnap_RegistFig(DSNAP_TYPE_KAMOME, &i_this->actor, 1.0f, 1.0f, 1.0f);
     return TRUE;
 }
 

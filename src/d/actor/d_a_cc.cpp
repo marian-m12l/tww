@@ -125,7 +125,7 @@ static BOOL daCC_Draw(cc_class* i_this) {
         return TRUE;
     }
 
-    dSnap_RegistFig(0xac, a_this, 1.0f, 1.0f, 1.0f);
+    dSnap_RegistFig(DSNAP_TYPE_CC, a_this, 1.0f, 1.0f, 1.0f);
 
     if (i_this->m2F5 != 0x35) {
         i_this->m2B8->entry(pJVar3->getModelData());
