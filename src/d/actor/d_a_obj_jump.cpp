@@ -35,22 +35,15 @@ const Attr_c Act_c::M_attr[2] = {
 /* 00000078-00000184       .text CreateHeap__Q29daObjJump5Act_cFv */
 BOOL daObjJump::Act_c::CreateHeap() {
     /* Nonmatching */ 
-    BOOL success = TRUE;
-    int modelFileIndex = *(int *)(&M_attr[this->field_0x2D4].m[0x6]);
-    if (modelFileIndex >= 0) {
-        J3DModelData* model_data = (J3DModelData*)dComIfG_getObjectRes(M_arcname, modelFileIndex);
-        JUT_ASSERT(282, model_data != NULL);
-        
-        mModel = mDoExt_J3DModel__create(model_data, 0x80000, 0x11000022);
-        success = (mModel != NULL);
-        if (mModel != NULL) {
-            model_data->getJointTree().getJointNodePointer(*(u16 *)(&M_attr[this->field_0x2D4].m[0x16]))->setCallBack(jnodeCB_lower);
-            mModel->setUserArea((u32)this);
-        }
-    } else {
-        mModel = NULL;
+    J3DModelData* model_data = (J3DModelData*)dComIfG_getObjectRes(M_arcname, *(s16 *)(&M_attr[this->field_0x2D4].m[0x6]));
+    JUT_ASSERT(282, model_data != NULL);
+    
+    mModel = mDoExt_J3DModel__create(model_data, 0x80000, 0x11000022);
+    if (mModel != NULL) {
+        model_data->getJointTree().getJointNodePointer(*(u16 *)(&M_attr[this->field_0x2D4].m[0x16]) & 0xffff)->setCallBack(jnodeCB_lower);
+        mModel->setUserArea((u32)this);
     }
-    return success;
+    return mModel != NULL;
 }
 
 /* 00000184-0000033C       .text Create__Q29daObjJump5Act_cFv */
