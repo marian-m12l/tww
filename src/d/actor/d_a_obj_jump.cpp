@@ -54,17 +54,17 @@ BOOL daObjJump::Act_c::Create() {
     this->init_mtx();
     fopAcM_setCullSizeBox(
         this,
-        *(float *)(&attr().m[0x8]),
-        *(float *)(&attr().m[0xa]),
-        *(float *)(&attr().m[0xc]),
-        *(float *)(&attr().m[0xe]),
-        *(float *)(&attr().m[0x10]),
-        *(float *)(&attr().m[0x12])
+        *(s16 *)(&attr().m[0x8]),
+        *(s16 *)(&attr().m[0xa]),
+        *(s16 *)(&attr().m[0xc]),
+        *(s16 *)(&attr().m[0xe]),
+        *(s16 *)(&attr().m[0x10]),
+        *(s16 *)(&attr().m[0x12])
     );
 
     if (*(u8 *)(&attr().m[0x14]) != 0) {
         this->field_0x2FC = current.pos.x;
-        this->field_0x300 = current.angle.x + 50.0f;
+        this->field_0x300 = current.pos.y + 50.0f;
         this->field_0x304 = current.pos.z;
         float uVar2;
         if (this->base.base.mBsType == 0) { // FIXME if (this == (Act_c *)0x0) {
