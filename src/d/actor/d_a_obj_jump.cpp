@@ -434,7 +434,10 @@ BOOL daObjJump::Act_c::Draw() {
             &current.pos,
             this->field_0x32C,
             70.0f,
-            this->field_0x2EC
+            this->field_0x2EC,
+            this->shape_angle.y,
+            1.0f,
+            NULL
         );
     }
     return TRUE;
