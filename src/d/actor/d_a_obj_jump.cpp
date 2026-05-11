@@ -34,7 +34,6 @@ const Attr_c Act_c::M_attr[2] = {
 
 /* 00000078-00000184       .text CreateHeap__Q29daObjJump5Act_cFv */
 BOOL daObjJump::Act_c::CreateHeap() {
-    /* Nonmatching */ 
     J3DModelData* model_data = (J3DModelData*)dComIfG_getObjectRes(M_arcname, *(s16 *)(&M_attr[this->field_0x2D4].m[0x6]));
     JUT_ASSERT(282, model_data != NULL);
     
@@ -273,7 +272,7 @@ void daObjJump::Act_c::mode_wait_init() {
 /* 00000F64-0000108C       .text mode_wait__Q29daObjJump5Act_cFv */
 void daObjJump::Act_c::mode_wait() {
     /* Nonmatching */ 
-    // FIXME 91%
+    // FIXME 99%
     if (this->field_0x352 <= 0 && (this->field_0x344[1] != 0 || this->field_0x344[2] != 0 || this->field_0x344[6] != 0 || this->field_0x344[9] != 0)) {
         this->field_0x340 += *(float *)(&M_attr[this->field_0x2D4].m[0x30]);
         this->field_0x352 = *(u8 *)(&M_attr[this->field_0x2D4].m[0x48]);
@@ -313,17 +312,16 @@ void daObjJump::Act_c::mode_lower_init() {
 /* 000010FC-00001200       .text mode_lower__Q29daObjJump5Act_cFv */
 void daObjJump::Act_c::mode_lower() {
     /* Nonmatching */ 
-    // FIXME 90%
-    if (this->field_0x352 < 1 && this->field_0x344[10] != 0) {
+    // FIXME 99%
+    if (this->field_0x352 <= 0 && this->field_0x344[10] != 0) {
         this->field_0x340 += *(float *)(&M_attr[this->field_0x2D4].m[0x30]);
-        this->field_0x352 = *(u16 *)(&M_attr[this->field_0x2D4].m[0x48]);
+        this->field_0x352 = *(u8 *)(&M_attr[this->field_0x2D4].m[0x48]);
     }
     else if (this->field_0x352 > 0) {
         this->field_0x352 -= 1;
     }
-    if (*(u8 *)(&M_attr[this->field_0x2D4].m[0x41]) < this->field_0x344[12]) {
-        dComIfGp_getReverb(fopAcM_GetRoomNo(this));
-        mDoAud_seStart(JA_SE_OBJ_JUMP_SPR_OPEN);
+    if (this->field_0x344[12] > *(u8 *)(&M_attr[this->field_0x2D4].m[0x41])) {
+        fopAcM_seStart(this, JA_SE_OBJ_JUMP_SPR_OPEN, 0);
         this->mode_l_u_init();
     }
     return;
