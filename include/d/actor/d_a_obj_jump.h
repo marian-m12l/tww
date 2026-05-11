@@ -36,7 +36,7 @@ namespace daObjJump {
         void set_push_flag();
         void clear_push_flag();
         void calc_vib_pos();
-        void rideCB(dBgW*, fopAc_ac_c*, fopAc_ac_c*);
+        static void rideCB(dBgW*, fopAc_ac_c*, fopAc_ac_c*);
         static BOOL jnodeCB_lower(J3DNode*, int);
         void mode_wait_init();
         void mode_wait();
@@ -53,6 +53,7 @@ namespace daObjJump {
         virtual BOOL Execute(Mtx**);
         virtual BOOL Draw();
     
+        static Mtx M_tmp_mtx;
         static const char M_arcname[];
         static const Attr_c M_attr[2];
     public:    
