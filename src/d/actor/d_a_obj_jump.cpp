@@ -274,15 +274,14 @@ void daObjJump::Act_c::mode_wait_init() {
 void daObjJump::Act_c::mode_wait() {
     /* Nonmatching */ 
     // FIXME 91%
-    if (this->field_0x352 < 1 && (this->field_0x344[1] != 0 || this->field_0x344[2] != 0 || this->field_0x344[6] != 0 || this->field_0x344[9] != 0)) {
+    if (this->field_0x352 <= 0 && (this->field_0x344[1] != 0 || this->field_0x344[2] != 0 || this->field_0x344[6] != 0 || this->field_0x344[9] != 0)) {
         this->field_0x340 += *(float *)(&M_attr[this->field_0x2D4].m[0x30]);
-        this->field_0x352 = *(u16 *)(&M_attr[this->field_0x2D4].m[0x48]);
+        this->field_0x352 = *(u8 *)(&M_attr[this->field_0x2D4].m[0x48]);
     }
     else if (this->field_0x352 > 0) {
         this->field_0x352 -= 1;
     }
-    if (*(u8 *)(&M_attr[this->field_0x2D4].m[0x40]) < this->field_0x344[11]) {
-        dComIfGp_getReverb(fopAcM_GetRoomNo(this));
+    if (this->field_0x344[11] > *(u8 *)(&M_attr[this->field_0x2D4].m[0x40])) {
         fopAcM_seStart(this, JA_SE_OBJ_JUMP_SPR_CLOSE, 0);
         this->mode_w_l_init();
     }
