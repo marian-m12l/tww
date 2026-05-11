@@ -34,12 +34,12 @@ const Attr_c Act_c::M_attr[2] = {
 
 /* 00000078-00000184       .text CreateHeap__Q29daObjJump5Act_cFv */
 BOOL daObjJump::Act_c::CreateHeap() {
-    J3DModelData* model_data = (J3DModelData*)dComIfG_getObjectRes(M_arcname, *(s16 *)(&M_attr[this->field_0x2D4].m[0x6]));
+    J3DModelData* model_data = (J3DModelData*)dComIfG_getObjectRes(M_arcname, *(s16 *)(&attr().m[0x6]));
     JUT_ASSERT(282, model_data != NULL);
     
     mModel = mDoExt_J3DModel__create(model_data, 0x80000, 0x11000022);
     if (mModel != NULL) {
-        model_data->getJointTree().getJointNodePointer(*(u16 *)(&M_attr[this->field_0x2D4].m[0x16]) & 0xffff)->setCallBack(jnodeCB_lower);
+        model_data->getJointTree().getJointNodePointer(*(u16 *)(&attr().m[0x16]) & 0xffff)->setCallBack(jnodeCB_lower);
         mModel->setUserArea((u32)this);
     }
     return mModel != NULL;
@@ -54,15 +54,15 @@ BOOL daObjJump::Act_c::Create() {
     this->init_mtx();
     fopAcM_setCullSizeBox(
         this,
-        *(float *)(&M_attr[this->field_0x2D4].m[0x8]),
-        *(float *)(&M_attr[this->field_0x2D4].m[0xa]),
-        *(float *)(&M_attr[this->field_0x2D4].m[0xc]),
-        *(float *)(&M_attr[this->field_0x2D4].m[0xe]),
-        *(float *)(&M_attr[this->field_0x2D4].m[0x10]),
-        *(float *)(&M_attr[this->field_0x2D4].m[0x12])
+        *(float *)(&attr().m[0x8]),
+        *(float *)(&attr().m[0xa]),
+        *(float *)(&attr().m[0xc]),
+        *(float *)(&attr().m[0xe]),
+        *(float *)(&attr().m[0x10]),
+        *(float *)(&attr().m[0x12])
     );
 
-    if (*(u8 *)(&M_attr[this->field_0x2D4].m[0x14]) != 0) {
+    if (*(u8 *)(&attr().m[0x14]) != 0) {
         this->field_0x2FC = current.pos.x;
         this->field_0x300 = current.angle.x + 50.0f;
         this->field_0x304 = current.pos.z;
@@ -93,9 +93,9 @@ cPhs_State daObjJump::Act_c::Mthd_Create() {
         this->field_0x2D4 = daObj::PrmAbstract(this, 1, 0);
         phase_state = MoveBGCreate(
             M_arcname,
-            *(int *)(&M_attr[this->field_0x2D4].m[0x4]),
+            *(int *)(&attr().m[0x4]),
             dBgS_MoveBGProc_Typical,
-            *(u32 *)(&M_attr[this->field_0x2D4].m[0])
+            *(u32 *)(&attr().m[0])
         );
         JUT_ASSERT(384, (phase_state == cPhs_COMPLEATE_e) || (phase_state == cPhs_ERROR_e));
     }
@@ -121,16 +121,16 @@ void daObjJump::Act_c::set_mtx() {
     mDoMtx_stack_c::ZXYrotM(shape_angle);
     mModel->setBaseTRMtx(mDoMtx_stack_c::get());
     
-    float fVar4 = *(float *)(&M_attr[this->field_0x2D4].m[0x20]) - *(float *)(&M_attr[this->field_0x2D4].m[0x24]);
-    /*float fVar1 = *(float *)(&M_attr[this->field_0x2D4].m[0x1c]);
-    float fVar2 = *(float *)(&M_attr[this->field_0x2D4].m[0x18]);
-    mDoMtx_stack_c::transM(0.0f, *(float *)(&M_attr[this->field_0x2D4].m[0x24]), 0.0f);
+    float fVar4 = *(float *)(&attr().m[0x20]) - *(float *)(&attr().m[0x24]);
+    /*float fVar1 = *(float *)(&attr().m[0x1c]);
+    float fVar2 = *(float *)(&attr().m[0x18]);
+    mDoMtx_stack_c::transM(0.0f, *(float *)(&attr().m[0x24]), 0.0f);
     float fVar3 = this->field_0x33C;
     mDoMtx_stack_c::scaleM(1.0f, (fVar4 + (fVar1 - fVar2) * (fVar3 - 1.0)) / fVar4,1.0f);
-    mDoMtx_stack_c::transM(0.0f, -(*(float *)(&M_attr[this->field_0x2D4].m[0x24])), 0.0f);*/
-    mDoMtx_stack_c::transM(0.0f, *(float *)(&M_attr[this->field_0x2D4].m[0x24]), 0.0f);
-    mDoMtx_stack_c::scaleM(1.0f, (fVar4 + (*(float *)(&M_attr[this->field_0x2D4].m[0x1c]) - *(float *)(&M_attr[this->field_0x2D4].m[0x18])) * (this->field_0x33C - 1.0)) / fVar4,1.0f);
-    mDoMtx_stack_c::transM(0.0f, -(*(float *)(&M_attr[this->field_0x2D4].m[0x24])), 0.0f);
+    mDoMtx_stack_c::transM(0.0f, -(*(float *)(&attr().m[0x24])), 0.0f);*/
+    mDoMtx_stack_c::transM(0.0f, *(float *)(&attr().m[0x24]), 0.0f);
+    mDoMtx_stack_c::scaleM(1.0f, (fVar4 + (*(float *)(&attr().m[0x1c]) - *(float *)(&attr().m[0x18])) * (this->field_0x33C - 1.0)) / fVar4,1.0f);
+    mDoMtx_stack_c::transM(0.0f, -(*(float *)(&attr().m[0x24])), 0.0f);
 
     cMtx_copy(mDoMtx_stack_c::get(), M_tmp_mtx);
 }
@@ -153,7 +153,7 @@ void daObjJump::Act_c::set_push_flag() {
         if (this->field_0x344[3] != -1) {
             this->field_0x344[3] += 1;
         }
-        if (this->field_0x344[3] == *(u8 *)(&M_attr[this->field_0x2D4].m[0x43])) {
+        if (this->field_0x344[3] == *(u8 *)(&attr().m[0x43])) {
             this->field_0x344[1] = 1;
         }
     }
@@ -162,7 +162,7 @@ void daObjJump::Act_c::set_push_flag() {
         if (this->field_0x344[4] != -1) {
             this->field_0x344[4] += 1;
         }
-        if (this->field_0x344[4] == *(u8 *)(&M_attr[this->field_0x2D4].m[0x44])) {
+        if (this->field_0x344[4] == *(u8 *)(&attr().m[0x44])) {
             this->field_0x344[2] = 1;
         }
     }
@@ -177,7 +177,7 @@ void daObjJump::Act_c::set_push_flag() {
         if (this->field_0x344[7] != -1) {
             this->field_0x344[7] += 1;
         }
-        if (this->field_0x344[7] == *(u8 *)(&M_attr[this->field_0x2D4].m[0x45])) {
+        if (this->field_0x344[7] == *(u8 *)(&attr().m[0x45])) {
             this->field_0x344[6] = 1;
         }
     }
@@ -189,7 +189,7 @@ void daObjJump::Act_c::set_push_flag() {
         if (this->field_0x344[11] != -1) {
             this->field_0x344[11] += 1;
         }
-        if (this->field_0x344[11] == *(u8 *)(&M_attr[this->field_0x2D4].m[0x46])) {
+        if (this->field_0x344[11] == *(u8 *)(&attr().m[0x46])) {
             this->field_0x344[9] = 1;
         }
     }
@@ -201,7 +201,7 @@ void daObjJump::Act_c::set_push_flag() {
     if (this->field_0x344[12] != -1) {
         this->field_0x344[12] += 1;
     }
-    if (this->field_0x344[12] != *(u8 *)(&M_attr[this->field_0x2D4].m[0x47])) {
+    if (this->field_0x344[12] != *(u8 *)(&attr().m[0x47])) {
         return;
     }
     this->field_0x344[10] = 1;
@@ -219,8 +219,8 @@ void daObjJump::Act_c::clear_push_flag() {
 
 /* 00000DB4-00000E1C       .text calc_vib_pos__Q29daObjJump5Act_cFv */
 void daObjJump::Act_c::calc_vib_pos() {
-    this->field_0x340 = this->field_0x340 - (this->field_0x33C - this->field_0x338) * *(float *)(&M_attr[this->field_0x2D4].m[0x2c]);
-    this->field_0x340 = this->field_0x340 - this->field_0x340 * *(float *)(&M_attr[this->field_0x2D4].m[0x28]);
+    this->field_0x340 = this->field_0x340 - (this->field_0x33C - this->field_0x338) * *(float *)(&attr().m[0x2c]);
+    this->field_0x340 = this->field_0x340 - this->field_0x340 * *(float *)(&attr().m[0x28]);
     this->field_0x33C = this->field_0x33C + this->field_0x340;
     return;
 }
@@ -274,13 +274,13 @@ void daObjJump::Act_c::mode_wait() {
     /* Nonmatching */ 
     // FIXME 99%
     if (this->field_0x352 <= 0 && (this->field_0x344[1] != 0 || this->field_0x344[2] != 0 || this->field_0x344[6] != 0 || this->field_0x344[9] != 0)) {
-        this->field_0x340 += *(float *)(&M_attr[this->field_0x2D4].m[0x30]);
-        this->field_0x352 = *(u8 *)(&M_attr[this->field_0x2D4].m[0x48]);
+        this->field_0x340 += *(float *)(&attr().m[0x30]);
+        this->field_0x352 = *(u8 *)(&attr().m[0x48]);
     }
     else if (this->field_0x352 > 0) {
         this->field_0x352 -= 1;
     }
-    if (this->field_0x344[11] > *(u8 *)(&M_attr[this->field_0x2D4].m[0x40])) {
+    if (this->field_0x344[11] > *(u8 *)(&attr().m[0x40])) {
         fopAcM_seStart(this, JA_SE_OBJ_JUMP_SPR_CLOSE, 0);
         this->mode_w_l_init();
     }
@@ -290,7 +290,7 @@ void daObjJump::Act_c::mode_wait() {
 /* 0000108C-000010B4       .text mode_w_l_init__Q29daObjJump5Act_cFv */
 void daObjJump::Act_c::mode_w_l_init() {
     this->field_0x330 = 1;
-    this->field_0x338 = *(float *)(&M_attr[this->field_0x2D4].m[0x38]);
+    this->field_0x338 = *(float *)(&attr().m[0x38]);
     return;
 }
 
@@ -314,13 +314,13 @@ void daObjJump::Act_c::mode_lower() {
     /* Nonmatching */ 
     // FIXME 99%
     if (this->field_0x352 <= 0 && this->field_0x344[10] != 0) {
-        this->field_0x340 += *(float *)(&M_attr[this->field_0x2D4].m[0x30]);
-        this->field_0x352 = *(u8 *)(&M_attr[this->field_0x2D4].m[0x48]);
+        this->field_0x340 += *(float *)(&attr().m[0x30]);
+        this->field_0x352 = *(u8 *)(&attr().m[0x48]);
     }
     else if (this->field_0x352 > 0) {
         this->field_0x352 -= 1;
     }
-    if (this->field_0x344[12] > *(u8 *)(&M_attr[this->field_0x2D4].m[0x41])) {
+    if (this->field_0x344[12] > *(u8 *)(&attr().m[0x41])) {
         fopAcM_seStart(this, JA_SE_OBJ_JUMP_SPR_OPEN, 0);
         this->mode_l_u_init();
     }
@@ -330,7 +330,7 @@ void daObjJump::Act_c::mode_lower() {
 /* 00001200-00001228       .text mode_l_u_init__Q29daObjJump5Act_cFv */
 void daObjJump::Act_c::mode_l_u_init() {
     this->field_0x330 = 3;
-    this->field_0x338 = *(float *)(&M_attr[this->field_0x2D4].m[0x3c]);
+    this->field_0x338 = *(float *)(&attr().m[0x3c]);
     return;
 }
 
@@ -353,7 +353,7 @@ void daObjJump::Act_c::mode_l_u() {
 /* 00001290-000012B8       .text mode_upper_init__Q29daObjJump5Act_cFv */
 void daObjJump::Act_c::mode_upper_init() {
     this->field_0x330 = 4;
-    this->field_0x334 = *(u8 *)(&M_attr[this->field_0x2D4].m[0x42]);
+    this->field_0x334 = *(u8 *)(&attr().m[0x42]);
     return;
 }
 
@@ -412,7 +412,7 @@ BOOL daObjJump::Act_c::Execute(Mtx** param_1) {
   }
   Runtime.PPCEABI.H::__ptmf_scall((PTMF *)(&DAT_8083c61c + *(int *)(this + 0x330) * 3),this,puVar1);*/
   if ((this->field_0x330 == 0 || this->field_0x330 == 2) && this->field_0x354[0] != 0) {
-    this->field_0x340 += *(float *)(&M_attr[this->field_0x2D4].m[0x34]);
+    this->field_0x340 += *(float *)(&attr().m[0x34]);
   }
   this->calc_vib_pos();
   this->set_mtx();
@@ -429,7 +429,7 @@ BOOL daObjJump::Act_c::Draw() {
     dComIfGd_setList();
     mDoExt_modelUpdateDL(this->mModel);
     dComIfGd_setListInvisisble();
-    if (*(u8 *)(&M_attr[this->field_0x2D4].m[0x14]) != 0) {
+    if (*(u8 *)(&attr().m[0x14]) != 0) {
         dComIfGd_setSimpleShadow2(
             &current.pos,
             this->field_0x32C,

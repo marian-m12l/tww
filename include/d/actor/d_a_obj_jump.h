@@ -23,7 +23,7 @@ namespace daObjJump {
             current.pos = *pos;
             m336 = 1;
         }
-        void attr() const {}
+        const Attr_c& attr() const { return M_attr[field_0x2D4]; }
         void prm_get_type() const {}
     
         virtual BOOL CreateHeap();
