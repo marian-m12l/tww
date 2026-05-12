@@ -48,6 +48,7 @@ BOOL daObjJump::Act_c::CreateHeap() {
 /* 00000184-0000033C       .text Create__Q29daObjJump5Act_cFv */
 BOOL daObjJump::Act_c::Create() {
     /* Nonmatching */
+    unsigned int uVar2;
     this->field_0x338 = 1.0f;
     this->field_0x33C = 1.0f;
     this->cullMtx = this->mModel->getBaseTRMtx();
@@ -61,16 +62,18 @@ BOOL daObjJump::Act_c::Create() {
         *(s16 *)(&attr().m[0x10]),
         *(s16 *)(&attr().m[0x12])
     );
-
     if (*(u8 *)(&attr().m[0x14]) != 0) {
-        this->field_0x2FC = current.pos.x;
-        this->field_0x300 = current.pos.y + 50.0f;
-        this->field_0x304 = current.pos.z;
-        float uVar2;
-        if (this->base.base.mBsType == 0) { // FIXME if (this == (Act_c *)0x0) {
-            uVar2 = -1.0f;
-        } else {
+        float z = current.pos.z;
+        float y = 50.0f + current.pos.y;
+        float x = current.pos.x;
+        this->field_0x2FC = x;
+        this->field_0x300 = y;
+        this->field_0x304 = z;
+        //if (this->base.base.mBsType != 0) { // FIXME if (this == (Act_c *)0x0) {
+        if (this != NULL) {
             uVar2 = this->base.base.mBsPcId;
+        } else {
+            uVar2 = 0xffffffff;
         }
         this->field_0x2E0 = uVar2;
         this->field_0x32C = dComIfG_Bgsp()->GroundCross((cBgS_GndChk *)&this->field_0x2D8);
