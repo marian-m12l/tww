@@ -60,7 +60,8 @@ namespace daObjJump {
         /* 0x2C8 */ request_of_phase_process_class mPhase;
         /* 0x2D0 */ J3DModel* mModel;
         /* 0x2D4 */ int field_0x2D4;
-        /* 0x2D8 */ u8 field_0x2D8[0x2E0 - 0x2D8];
+        /* 0x2D8 */ cBgS_GndChk* field_0x2D8;
+        /* 0x2DC */ int field_0x2DC;
         /* 0x2E0 */ fpc_ProcID field_0x2E0;
         /* 0x2E4 */ u8 field_0x2E4[0x2EC - 0x2E4];
         /* 0x2EC */ cBgS_PolyInfo field_0x2EC;

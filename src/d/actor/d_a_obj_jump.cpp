@@ -76,7 +76,7 @@ BOOL daObjJump::Act_c::Create() {
             uVar2 = 0xffffffff;
         }
         this->field_0x2E0 = uVar2;
-        this->field_0x32C = dComIfG_Bgsp()->GroundCross((cBgS_GndChk *)&this->field_0x2D8);
+        this->field_0x32C = dComIfG_Bgsp()->GroundCross(this->field_0x2D8);
     }
     if (this->field_0x2D4 == 1) {
         this->actor_status &= 0xffffffc0;
