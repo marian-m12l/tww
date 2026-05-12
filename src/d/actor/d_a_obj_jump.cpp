@@ -226,25 +226,20 @@ void daObjJump::Act_c::calc_vib_pos() {
 }
 
 /* 00000E1C-00000E74       .text rideCB__Q29daObjJump5Act_cFP4dBgWP10fopAc_ac_cP10fopAc_ac_c */
-void daObjJump::Act_c::rideCB(dBgW* param_1, fopAc_ac_c* param_2, fopAc_ac_c*) {
+void daObjJump::Act_c::rideCB(dBgW*, fopAc_ac_c* param_2, fopAc_ac_c* param_3) {
     /* Nonmatching */
-    uint uVar1;
-    
-    param_1->mCurMtx[1][2] = 1;
-    if (param_2->base.base.mBsType != 0xa9) {
+    // FIXME pointer offsets... and fopAc_ac_c is supposed to be 0x290 bytes only
+    *((s8 *)param_2 + 0x344) = 1;
+    if (param_3->base.base.mProfName != 0xa9) {
         return;
     }
-    param_1->mFlags = 1;
-    uVar1 = param_2->base.base.mInitState;
-    uVar1 = param_2->base.base.mCreateResult;
-    uVar1 = param_2->base.base.mBsType;
-    if ((uVar1 & 0x2000000) != 0) {
-        param_1->mCurMtx[2][0] = 1;
+    *((s8 *)param_2 + 0x349) = 1;
+    if ((*((uint *)((s8 *)param_3 + 0x29c)) & 0x2000000) != 0) {
+        *((s8 *)param_2 + 0x34c) = 1;
     }
-    /*if (param_2->speedF <= *(float *)(&M_attr[param_1->pm_base.mpNodeTree].m[0x4c])) {
-        return;
-    }*/
-    param_1->mCurMtx[2][2] = 1;
+    if (param_3->speedF > *(float *)(&M_attr[*((int *)((s8 *)param_2 + 0x2d4))].m[0x4c])) {
+        *((s8 *)param_2 + 0x354) = 1;
+    }
     return;
 }
 
