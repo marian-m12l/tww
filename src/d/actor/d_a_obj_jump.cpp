@@ -380,40 +380,29 @@ void daObjJump::Act_c::mode_u_w() {
 /* 00001338-000014B0       .text Execute__Q29daObjJump5Act_cFPPA3_A4_f */
 BOOL daObjJump::Act_c::Execute(Mtx** param_1) {
     /* Nonmatching */ 
-  this->set_push_flag();
-  u32 puVar1 = 0;// FIXME init$4439 ??
-  /*if (d_a_obj_jump::init$4439 == '\0') {
 
-    DAT_8083c61c = DAT_8083c5d4;
-    DAT_8083c620 = DAT_8083c5d8;
-    DAT_8083c624 = PTR_mode_wait_8083c5dc;
-    puVar1 = &DAT_8083c61c;
-    DAT_8083c628 = DAT_8083c5e0;
-    DAT_8083c62c = DAT_8083c5e4;
-    DAT_8083c630 = PTR_mode_w_l_8083c5e8;
-    DAT_8083c634 = DAT_8083c5ec;
-    DAT_8083c638 = DAT_8083c5f0;
-    DAT_8083c63c = PTR_mode_lower_8083c5f4;
-    DAT_8083c640 = DAT_8083c5f8;
-    DAT_8083c644 = DAT_8083c5fc;
-    DAT_8083c648 = PTR_mode_l_u_8083c600;
-    DAT_8083c64c = DAT_8083c604;
-    DAT_8083c650 = DAT_8083c608;
-    DAT_8083c654 = PTR_mode_upper_8083c60c;
-    DAT_8083c658 = DAT_8083c610;
-    DAT_8083c65c = DAT_8083c614;
-    DAT_8083c660 = PTR_mode_u_w_8083c618;
-    d_a_obj_jump::init$4439 = '\x01';
-  }
-  Runtime.PPCEABI.H::__ptmf_scall((PTMF *)(&DAT_8083c61c + *(int *)(this + 0x330) * 3),this,puVar1);*/
-  if ((this->field_0x330 == 0 || this->field_0x330 == 2) && this->field_0x354[0] != 0) {
-    this->field_0x340 += *(float *)(&attr().m[0x34]);
-  }
-  this->calc_vib_pos();
-  this->set_mtx();
-  *param_1 = &M_tmp_mtx;
-  this->clear_push_flag();
-  return TRUE;
+    this->set_push_flag();
+
+    typedef void (daObjJump::Act_c::*procFunc)();
+    static procFunc mode_proc[] = {
+        &daObjJump::Act_c::mode_wait,
+        &daObjJump::Act_c::mode_w_l,
+        &daObjJump::Act_c::mode_lower,
+        &daObjJump::Act_c::mode_l_u,
+        &daObjJump::Act_c::mode_upper,
+        &daObjJump::Act_c::mode_u_w
+    };
+
+    (this->*mode_proc[this->field_0x330])();
+
+    if ((this->field_0x330 == 0 || this->field_0x330 == 2) && this->field_0x354[0] != 0) {
+        this->field_0x340 += *(float *)(&attr().m[0x34]);
+    }
+    this->calc_vib_pos();
+    this->set_mtx();
+    *param_1 = &M_tmp_mtx;
+    this->clear_push_flag();
+    return TRUE;
 }
 
 /* 000014B0-00001594       .text Draw__Q29daObjJump5Act_cFv */
