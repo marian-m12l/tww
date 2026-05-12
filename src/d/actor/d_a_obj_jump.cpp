@@ -119,7 +119,6 @@ BOOL daObjJump::Act_c::Mthd_Delete() {
 
 /* 00000A58-00000B78       .text set_mtx__Q29daObjJump5Act_cFv */
 void daObjJump::Act_c::set_mtx() {
-    /* Nonmatching */
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::ZXYrotM(shape_angle);
     mModel->setBaseTRMtx(mDoMtx_stack_c::get());
@@ -261,8 +260,6 @@ void daObjJump::Act_c::mode_wait_init() {
 
 /* 00000F64-0000108C       .text mode_wait__Q29daObjJump5Act_cFv */
 void daObjJump::Act_c::mode_wait() {
-    /* Nonmatching */ 
-    // FIXME 99%
     if (this->field_0x352 <= 0 && (this->field_0x344[1] != 0 || this->field_0x344[2] != 0 || this->field_0x344[6] != 0 || this->field_0x344[9] != 0)) {
         this->field_0x340 += *(float *)(&attr().m[0x30]);
         this->field_0x352 = *(u8 *)(&attr().m[0x48]);
@@ -301,8 +298,6 @@ void daObjJump::Act_c::mode_lower_init() {
 
 /* 000010FC-00001200       .text mode_lower__Q29daObjJump5Act_cFv */
 void daObjJump::Act_c::mode_lower() {
-    /* Nonmatching */ 
-    // FIXME 99%
     if (this->field_0x352 <= 0 && this->field_0x344[10] != 0) {
         this->field_0x340 += *(float *)(&attr().m[0x30]);
         this->field_0x352 = *(u8 *)(&attr().m[0x48]);
@@ -326,11 +321,9 @@ void daObjJump::Act_c::mode_l_u_init() {
 
 /* 00001228-00001290       .text mode_l_u__Q29daObjJump5Act_cFv */
 void daObjJump::Act_c::mode_l_u() {
-    /* Nonmatching */ 
     if (this->field_0x33C >= this->field_0x338) {
         this->field_0x33C = this->field_0x338;
         this->field_0x340 = 0.0f;
-        // FIXME 99%
         if (*(u8*)(&this->field_0x344[5]) != 0) {
             daPy_py_c* player = (daPy_py_c*)dComIfGp_getPlayer(0);
             player->onForceVomitJump();
