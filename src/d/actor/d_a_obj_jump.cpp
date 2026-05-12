@@ -96,7 +96,7 @@ cPhs_State daObjJump::Act_c::Mthd_Create() {
         this->field_0x2D4 = daObj::PrmAbstract(this, 1, 0);
         phase_state = MoveBGCreate(
             M_arcname,
-            *(int *)(&attr().m[0x4]),
+            *(s16 *)(&attr().m[0x4]),
             dBgS_MoveBGProc_Typical,
             *(u32 *)(&attr().m[0])
         );
