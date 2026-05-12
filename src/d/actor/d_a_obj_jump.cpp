@@ -244,14 +244,16 @@ void daObjJump::Act_c::rideCB(dBgW*, fopAc_ac_c* param_2, fopAc_ac_c* param_3) {
 }
 
 /* 00000E74-00000F48       .text jnodeCB_lower__Q29daObjJump5Act_cFP7J3DNodei */
-BOOL daObjJump::Act_c::jnodeCB_lower(J3DNode* param_1, int) {
+BOOL daObjJump::Act_c::jnodeCB_lower(J3DNode* param_1, int param_2) {
     /* Nonmatching */
-    if (param_1 == NULL) {
+    if (param_2 == 0) {
         Act_c *pvVar4 = (Act_c *) j3dSys.getModel()->getUserArea();
-        PSMTXCopy(j3dSys.mCurrentMtx, mDoMtx_stack_c::get());
+        u16 uVar1 = *(u16 *)&pvVar4->base.base.mLyTg;
+        PSMTXCopy(j3dSys.getModel()->getAnmMtx(uVar1), mDoMtx_stack_c::get());
         mDoMtx_stack_c::scaleM(pvVar4->field_0x33C,1.0f,1.0f);
-        PSMTXCopy(mDoMtx_stack_c::get(), j3dSys.mCurrentMtx);
-        j3dSys.mCurrentMtx[1][3] += (*(float *)(&M_attr[pvVar4->field_0x2D4].m[0x1c]) - *(float *)(&M_attr[pvVar4->field_0x2D4].m[0x18])) * (pvVar4->field_0x33C - 1.0f);
+        j3dSys.getModel()->setAnmMtx(uVar1, mDoMtx_stack_c::get());
+        float fVar1 = *(float *)(&M_attr[pvVar4->field_0x2D4].m[0x1c]) - *(float *)(&M_attr[pvVar4->field_0x2D4].m[0x18]);
+        j3dSys.mCurrentMtx[1][3] += fVar1 * (pvVar4->field_0x33C - 1.0f);
     }
     return TRUE;
 }
