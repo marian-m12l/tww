@@ -120,18 +120,13 @@ void daObjJump::Act_c::set_mtx() {
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::ZXYrotM(shape_angle);
     mModel->setBaseTRMtx(mDoMtx_stack_c::get());
-    
-    float fVar4 = *(float *)(&attr().m[0x20]) - *(float *)(&attr().m[0x24]);
-    /*float fVar1 = *(float *)(&attr().m[0x1c]);
-    float fVar2 = *(float *)(&attr().m[0x18]);
+    float fVar1 = *(float *)(&attr().m[0x20]) - *(float *)(&attr().m[0x24]);
+    float fVar2 = (*(float *)(&attr().m[0x1c]) - *(float *)(&attr().m[0x18]));
+    float fVar3 = (this->field_0x33C - 1.0f);
+    float fVar4 = (fVar1 + fVar2 * fVar3) / fVar1;
     mDoMtx_stack_c::transM(0.0f, *(float *)(&attr().m[0x24]), 0.0f);
-    float fVar3 = this->field_0x33C;
-    mDoMtx_stack_c::scaleM(1.0f, (fVar4 + (fVar1 - fVar2) * (fVar3 - 1.0)) / fVar4,1.0f);
-    mDoMtx_stack_c::transM(0.0f, -(*(float *)(&attr().m[0x24])), 0.0f);*/
-    mDoMtx_stack_c::transM(0.0f, *(float *)(&attr().m[0x24]), 0.0f);
-    mDoMtx_stack_c::scaleM(1.0f, (fVar4 + (*(float *)(&attr().m[0x1c]) - *(float *)(&attr().m[0x18])) * (this->field_0x33C - 1.0)) / fVar4,1.0f);
+    mDoMtx_stack_c::scaleM(1.0f, fVar4,1.0f);
     mDoMtx_stack_c::transM(0.0f, -(*(float *)(&attr().m[0x24])), 0.0f);
-
     cMtx_copy(mDoMtx_stack_c::get(), M_tmp_mtx);
 }
 
