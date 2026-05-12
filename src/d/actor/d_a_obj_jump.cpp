@@ -139,61 +139,56 @@ void daObjJump::Act_c::init_mtx() {
 
 /* 00000BB4-00000D9C       .text set_push_flag__Q29daObjJump5Act_cFv */
 void daObjJump::Act_c::set_push_flag() {
-    /* Nonmatching */
     this->field_0x344[1] = 0;
-    if (this->field_0x344[0] == 0) {
-        this->field_0x344[3] = 0;
-    }
-    else {
-        if (this->field_0x344[3] != -1) {
+    if (this->field_0x344[0] != 0) {
+        if (this->field_0x344[3] < 0xff) {
             this->field_0x344[3] += 1;
         }
         if (this->field_0x344[3] == *(u8 *)(&attr().m[0x43])) {
             this->field_0x344[1] = 1;
         }
+    } else {
+        this->field_0x344[3] = 0;
     }
     this->field_0x344[2] = 0;
-    if (this->field_0x344[0] == 0) {
-        if (this->field_0x344[4] != -1) {
+    if (this->field_0x344[0] != 0) {
+        this->field_0x344[4] = 0;
+    } else {
+        if (this->field_0x344[4] < 0xff) {
             this->field_0x344[4] += 1;
         }
         if (this->field_0x344[4] == *(u8 *)(&attr().m[0x44])) {
             this->field_0x344[2] = 1;
         }
     }
-    else {
-        this->field_0x344[4] = 0;
-    }
     this->field_0x344[6] = 0;
-    if (this->field_0x344[5] == 0 || dComIfGp_checkPlayerStatus0(0, daPyStts0_UNK100_e)) {
-        this->field_0x344[7] = 0;
-    }
-    else {
-        if (this->field_0x344[7] != -1) {
+    if (this->field_0x344[5] != 0 && dComIfGp_checkPlayerStatus0(0, daPyStts0_UNK100_e)) {
+        if (this->field_0x344[7] < 0xff) {
             this->field_0x344[7] += 1;
         }
         if (this->field_0x344[7] == *(u8 *)(&attr().m[0x45])) {
             this->field_0x344[6] = 1;
         }
+    } else {
+        this->field_0x344[7] = 0;
     }
     this->field_0x344[9] = 0;
-    if (this->field_0x344[8] == 0) {
-        this->field_0x344[11] = 0;
-    }
-    else {
-        if (this->field_0x344[11] != -1) {
+    if (this->field_0x344[8] != 0) {
+        if (this->field_0x344[11] < 0xff) {
             this->field_0x344[11] += 1;
         }
         if (this->field_0x344[11] == *(u8 *)(&attr().m[0x46])) {
             this->field_0x344[9] = 1;
         }
+    } else {
+        this->field_0x344[11] = 0;
     }
     this->field_0x344[10] = 0;
     if (this->field_0x344[8] != 0) {
         this->field_0x344[12] = 0;
         return;
     }
-    if (this->field_0x344[12] != -1) {
+    if (this->field_0x344[12] < 0xff) {
         this->field_0x344[12] += 1;
     }
     if (this->field_0x344[12] != *(u8 *)(&attr().m[0x47])) {
